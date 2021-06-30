@@ -12,6 +12,7 @@ function CheckboxTestTwo() {
   const toggleSelectAll = (setFieldValue, values) => {
     setFieldValue('selectAll', !values.selectAll);
     if (!values.selectAll) {
+      setFieldValue('cbOption', (values.cbOption = []));
       setFieldValue('cbOption.cdOption1', values.cbOption.push('cbOption1'));
       setFieldValue('cbOption.cdOption2', values.cbOption.push('cbOption2'));
     } else {
