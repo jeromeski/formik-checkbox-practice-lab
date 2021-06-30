@@ -1,6 +1,12 @@
 body {
   font-family: sans-serif;
 }
+
+button {
+  display: flex;
+  margin: 10px 0 10px 0;
+}
+
 label {
   /* display: block;
   width: 100%; */
@@ -8,4 +14,17 @@ label {
 .d-inline-block {
   display: inline-block;
   margin-right: 5px;
+}
+
+.form-control {
+  display: block;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+}
+
+.error::before {
+  content: '*';
 }

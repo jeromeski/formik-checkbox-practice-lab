@@ -9,8 +9,9 @@ function CheckboxGroup(props) {
       <label htmlFor={name}>{label}</label>
       <Field name={name} {...rest}>
         {({ field }) => {
-          console.log(field);
+          console.log('field :', field);
           return options.map((option) => {
+            console.log('map :', option.value);
             return (
               <React.Fragment key={option.key}>
                 <input

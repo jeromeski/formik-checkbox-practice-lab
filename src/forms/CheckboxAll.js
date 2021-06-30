@@ -3,7 +3,14 @@ import { Field, ErrorMessage } from 'formik';
 import TextError from './TextError';
 
 function CheckboxAll(props) {
-  const { name, label, values, setFieldValue, handleChange, options } = props;
+  const {
+    name,
+    label,
+    values,
+    setFieldValue,
+    toggleSelectAll,
+    options
+  } = props;
   return (
     <div className="form-control d-inline-block">
       <Field
@@ -11,7 +18,8 @@ function CheckboxAll(props) {
         name={name}
         id={name}
         value={name}
-        onChange={() => handleChange(values, setFieldValue, options)}
+        onChange={() => toggleSelectAll(values, setFieldValue, options)}
+        checked={values.checked1}
       />
       <label htmlFor={name}>{label}</label>
     </div>

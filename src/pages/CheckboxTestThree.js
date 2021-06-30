@@ -18,14 +18,18 @@ function CheckboxTestThree() {
     console.log(values);
   };
 
-  const validationSchema = Yup.object({});
+  const validationSchema = Yup.object({
+    checked2: Yup.array().min(1, 'Please select at least one')
+  });
 
-  const handleChange = (values, setFieldValue, options) => {
+  const toggleSelectAll = (values, setFieldValue, options) => {
     setFieldValue('checked1', !values.checked1);
     if (!values.checked1) {
       options.forEach((option, index) => {
-        console.log(option.value);
-        setFieldValue('checked2', values.checked2.push(option.value));
+        setFieldValue(
+          `checked2.${option.value}`,
+          values.checked2.push(option.value)
+        );
       });
     } else {
       setFieldValue('checked2', (values.checked2 = []));
@@ -38,7 +42,7 @@ function CheckboxTestThree() {
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={validationSchema}>
-        {({ values, setFieldValue }) => {
+        {({ values, setFieldValue, isValid, isSubmitting }) => {
           // console.log(values)
           return (
             <Form>
@@ -46,7 +50,7 @@ function CheckboxTestThree() {
                 control="checkbox1"
                 name="checked1"
                 label="Select All"
-                handleChange={handleChange}
+                toggleSelectAll={toggleSelectAll}
                 values={values}
                 setFieldValue={setFieldValue}
                 options={cOptions}
@@ -57,6 +61,11 @@ function CheckboxTestThree() {
                 label=""
                 options={cOptions}
               />
+
+              <button type="submit" disabled={!isValid}>
+                Submit
+              </button>
+
               <pre>{JSON.stringify(values, 2, null)}</pre>
             </Form>
           );
